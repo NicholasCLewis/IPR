@@ -53,7 +53,7 @@ module mHexagon(vWidth, vDepth) {
 }
 
 module mHole_horiz(vRadius,vLength) {
-	cylinder(r = vRadius, h = vLength,center=true);
+	cylinder(r = vRadius, h = vLength,center=true, $fn = 10);
 	if(dnaUse_teardrop){
 		translate ([vRadius*sin(45),0,0]) rotate ([0,0,45])
 			cube([vRadius,vRadius,vLength],center=true);
@@ -111,6 +111,15 @@ module mAxis_bearing(){
 	}
 }
 
+module mIdler_pulley(){
+	color([ 0/255, 167/255, 0/255, 1])
+	difference(){
+		cylinder(r=dnaIdler_pulley_OR,h=dnaBelt_W,center=true);
+		cylinder(r=dnaIdler_pulley_IR,h=dnaBelt_W+2,center=true);
+	}
+}
+
+
 module mScrew(vShaftR,vHeadR,vHeadH,vLength){
 	color([ 167/255, 167/255, 0/255, 1])
 	union(){
@@ -124,12 +133,17 @@ module mScrew(vShaftR,vHeadR,vHeadH,vLength){
 // Drive bearing with supports
 module mDrive_bearing(vHeight){
 	union(){
-		cylinder(h=vHeight,r=dnaZ_drive_bearing_OR,center=true);
+		translate ([0,0,-vHeight/4])
+			cylinder(h=vHeight/2+0.01,r=dnaZ_drive_bearing_OR,center=true);
+		translate ([0,0,vHeight/4])
+			mPolygon(3,2*dnaZ_drive_bearing_OR/sin(60),vHeight/2);
 		// Bearing supports
 		for(i=[0,120,240]){
 			rotate ([0,0,i]){
 				translate ([dnaZ_drive_bearing_OR+dnaScrew_R,0,0])
-					 mHole_vert(dnaScrew_R,vHeight);
+					mHole_vert(dnaScrew_R,vHeight);
+				translate ([dnaZ_drive_bearing_OR+dnaScrew_R,0,vHeight/4])
+					mHole_vert(dnaScrew_washer_R,vHeight/2);
 				translate ([dnaZ_drive_bearing_OR+dnaScrew_R-2,0,0])
 					cube([2*dnaScrew_R,1.5*dnaScrew_R,vHeight], center=true);
 			}
@@ -188,7 +202,7 @@ module mFrame(){
 		mZ_drive_rod(calZ_drive_rod_L);
 //z guides
 	for(i=[-calZ_drive_rod_to_guide_rod_spacing,calZ_drive_rod_spacing+calZ_drive_rod_to_guide_rod_spacing]){	
-		translate([i,0,(calZ_guide_rod_L-calRod_part_T)/2])
+		translate([i,0,calZ_guide_rod_L/2-dnaRod_R])
 			mGuide_rod(calZ_guide_rod_L);
 	}
 //y supports (run in x direction)
@@ -204,7 +218,7 @@ module mFrame(){
 		rotate([0,90,0])mRod(calY_support_L);
 	translate([calZ_drive_rod_spacing/2, -calFrame_top_spacing/2, calY_support_to_lower_support_z+calY_support_to_upper_support_z])
 		rotate([0,90,0])mRod(calY_support_L);
-	translate([calZ_drive_rod_spacing/2, calZ_drive_rod_to_support_rod_spacing, 0])
+	translate([calZ_drive_rod_spacing/2, -calZ_drive_rod_to_support_rod_spacing, 0])
 		rotate([0,90,0])mRod(calY_support_L);
 //y guides
 	for(i=[-calY_guide_rod_spacing/2,calY_guide_rod_spacing/2]){
@@ -242,8 +256,16 @@ translate([calZ_drive_rod_spacing/2,0,calY_support_to_lower_support_z+calY_suppo
 	color([ 183/255, 128/255, 11/255, 1])
 	cube([dnaX_build_space+20,dnaY_build_space+20,dnaThin_sheet_T],center = true);
 
-//zmotor
-translate([(dnaMotor_w/2-dnaZ_drive_bearing_OR), -calZ_drive_rod_to_motor_spacing_y, dnaRod_R*3])
+//x motor
+translate([calZ_drive_rod_spacing+calZ_drive_rod_to_guide_rod_spacing+dnaMotor_w/2+dnaRod_R,calX_guide_rod_spacing/2+dnaRod_R,(calZ_drive_rod_L-calRod_part_T)/2-dnaRod_R*2])
+	rotate([0,-90,90])
+		mMotor();
+//y motor
+translate([calZ_drive_rod_spacing/2, -calVertex_spacing_y/2-calY_support_to_lower_support_y-dnaMotor_w/2-dnaRod_R, calY_support_to_lower_support_z-dnaMotor_w/2+dnaIdler_pulley_R])
+	rotate([0,-90,0])
+		mMotor();
+//z motor
+translate([calZ_drive_rod_spacing-(dnaMotor_w/2-dnaZ_drive_bearing_OR), calZ_drive_rod_to_motor_spacing_y, dnaRod_R*3])
 	mMotor();
 //translate([0,0,dnaRod_R+5])
 //mDrive_bearing(10);

@@ -30,15 +30,15 @@
 
 
 // General settings
-	dnaUse_teardrop = true;		// use teardrop holes?
+	dnaUse_teardrop = false;		// use teardrop holes?
 	dnaVertex_type = 1;				// 0 use vertex parts or 1 use thicksheet sides
 
 // Build Space
-	dnaX_build_space = 200;			// build space in X
-	dnaY_build_space = 200;			// build space in Y
+	dnaX_build_space = 150;			// build space in X
+	dnaY_build_space = 150;			// build space in Y
 	//dnaZ_build_space = 200;			// build space in Z
 		
-// Motor
+// Motors
 	dnaMotor_w=43;					// Nema17 = 43
 	dnaMotor_h=47;					// Nema17 = 47
 	dnaMotor_hub_R=11;				// Nema17 = 11
@@ -46,34 +46,43 @@
 	dnaMotor_shaft_R = 2.5;			// Radius of shaft - Nema17 = 2.5
 	dnaMotor_shaft_L = 24;			// Radius of shaft - Nema17 = 20
 	dnaMotor_mount_spacing=31;		// Nema17 = 31
-	dnaMotor_screw_R = 1.9;			// Radius of shaft - m3 = 1.9
+	dnaMotor_screw_R = 1.5;			// Radius of shaft - m3 = 1.5
 	dnaMotor_screw_head_R = 2.7;	// Radius of head - m3 = 2.7
 	dnaMotor_screw_head_H = 4;		// height of head  - m3 = 4
-	dnaMotor_mount_T = 5;			// thickness of mount plate
-	dnaZ_motor_adjust_L = 20;			// adjustment amount for z motor
+	dnaMotor_mount_T = 7;			// thickness of mount plate
+	dnaZ_motor_mount_T = 15;		// thickness of mount plate
+	dnaZ_motor_adjust_L = 20;		// adjustment amount for z motor
+
+// Endstops
+	dnaEndstop_mount_spacing=19;		// Gen3 Endstop = 19
+	dnaEndstop_screw_R = 1.8;			// Radius of shaft - m3 = 1.5, #6 = 1.8
+	dnaMin_around_endstop_hole = 1.5;
 	
 // Bearings
 	dnaZ_drive_bearing_IR = 4;		// 608 = 4
-	dnaZ_drive_bearing_OR = 11.8;	// 608 = 11.8??
+	dnaZ_drive_bearing_OR = 11.1;	// 608 = 11.1??
 	dnaZ_drive_bearing_W = 7;		// 608 = 7
-	dnaAxis_bearing_IR = 2.5;			// 624 = 2
-	dnaAxis_bearing_OR = 4;		// 624 = 6.5
+	dnaAxis_bearing_IR = 3.2;		// 624 = 2 (2.5)
+	dnaAxis_bearing_OR = 3;			// 624 = 6.5 (4)
 	dnaAxis_bearing_W = 5+4;		// 624 = 5
+	dnaAxis_bearing_nut = 3;		// 624 = 5
+	dnaAxis_bearing_type = 1;		// bearing = 0, rod (PTFE) = 1
 
 // Fasteners
 	dnaMin_around_hole = 3;			// 3mm between a hole and the edge of a part
 	dnaScrew_R = 2.2;				// Radius of shaft - m4 = 2.2
 	dnaScrew_head_R = 3.7;			// Radius of head - m4 = 3.7
+	dnaScrew_washer_R = 4.5;		// Radius of washer - m4 = 3.7
 	dnaScrew_head_H = 5;			// height of head - m4 = 5
 	dnaScrew_nut_W = 6.9;			// distance between flats -> m4 = 6.9
 	dnaScrew_nut_T = 3.2;			// thickness -> m4 = 3.2
-	dnaRod_R = 4.5;					// Radius of shaft - m8 = 4.5
+	dnaRod_R = 3.9;					// Radius of shaft - m8 = 4.5, 5/16 = 3.9
 	dnaRod_nut_W = 12.8;			// distance between flats -> m8 = 12.8
 	dnaRod_nut_T = 6.5;				// thickness -> m8 = 6.5 
 	dnaZ_drive_rod_R = 4.5;			// Radius of shaft - m8 = 4.5
 	dnaZ_drive_rod_nut_W = 12.8;	// distance between flats -> m8 = 12.8 
 	dnaZ_drive_rod_nut_T = 6.5;		// thickness -> m8 = 6.5
-	dnaGuide_rod_R=4.3;				// Radius of the guide rods m8 = 4.3
+	dnaGuide_rod_R=3.9;				// Radius of the guide rods m8 = 4.3, 5/16 = 3.9
 	dnaBed_Spring_H=10;				// compressed height of bed springs
 
 // Thick Sheet
@@ -83,8 +92,8 @@
 	
 // Robot settings
 // X carriage design
-	dnaX_car_L=10;						// prefered L of the X carriage
-	dnaX_guide_rod_spacing = 0;		// x-axis guide rod distance (center to center) ###REQUESTED###
+	dnaX_car_L=0;						// prefered L of the X carriage
+	dnaX_guide_rod_spacing = 50;		// x-axis guide rod distance (center to center) ###REQUESTED###
 	
 // Extruder
 	dnaExtruder_z = 60;					// Wades = 60 (max size in z direction)
@@ -94,28 +103,37 @@
 // Pulleys
 	dnaMotor_pulley_R = 4.84;			// to inner surface of belt
 	dnaZ_drive_pulley_R = 14;			// to inner surface of belt
+	dnaIdler_pulley_OR = 11;				// to inner surface of belt
+	dnaIdler_pulley_IR = 4;				// to inner surface of belt
 	dnaBelt_W = 0.25*25.4;				// width
 	dnaBelt_T = 3;						// thickness
+	dnaZ_drive_plate_T = 15;			// 
+	
 	
 // Frame
-	dnaFrame_top_spacing = 100;			// 0 gives same as lower vertex spaceing
+	dnaFrame_top_spacing = 180;			// 0 gives same as lower vertex spaceing
 	dnaVertex_W = 0;					// 0 defaults to calRod_part_T
+	dnaVertex_foot_H = 15;				//
 	
 // #####IPR calculated diminsions#####
 	calAxis_bearing_center_spacing = (dnaAxis_bearing_OR+dnaGuide_rod_R)*2;		// axis bearing distance(center to center)
 
 // basic structure dimensions
 	calMin_screw_from_edge = dnaScrew_R+dnaMin_around_hole;				// distance from edge of part to center of screw hole
+	calMin_endstop_screw_from_edge = dnaEndstop_screw_R+dnaMin_around_endstop_hole;
 	calMin_rod_from_edge = dnaRod_R+dnaMin_around_hole;					// distance from edge of part to center of rod hole
+	calMin_guide_rod_from_edge = dnaGuide_rod_R+dnaMin_around_hole;					// distance from edge of part to center of rod hole
 	calScrew_part_T = (calMin_screw_from_edge)*2;						// thickness of X & Y guide bearing parts
 	calRod_part_T = (calMin_rod_from_edge)*2;							// thickness of Z guide bearing parts
+	calGuide_rod_part_T = (calMin_guide_rod_from_edge)*2;							// thickness of Z guide bearing parts
+	calEndstop_mount_T = (calMin_endstop_screw_from_edge)*2;
 	calVertex_W = max(dnaVertex_W, calRod_part_T);						// width of vertex parts (in y direction)
 	
 // ###Guide Bearing Calculations###
 // calculate some basic dimensions related to the guide bearing parts
-	calOne_eighty_mount_W = 2*(dnaAxis_bearing_IR+dnaMin_around_hole);	// vWidth of 180 degree guide bearing mount
-	calThree_sixty_mount_W = 2*(dnaAxis_bearing_OR+dnaRod_R);			// vWidth of 360 degree guide bearing mount
-	calGuide_bearing_from_end = dnaScrew_R+dnaAxis_bearing_OR+1;		// distance from center of adjust screw to center of bearing
+	calOne_eighty_mount_W = 2*(dnaAxis_bearing_IR+dnaMin_around_hole);	// Width of 180 degree guide bearing mount
+	//calThree_sixty_mount_W = 2*(dnaAxis_bearing_OR+dnaRod_R);			// Width of 360 degree guide bearing mount
+	calGuide_bearing_from_end = calMin_screw_from_edge+dnaScrew_R+dnaAxis_bearing_OR+1;		// distance from center of adjust screw to center of bearing
 // overall guide mount distances (center to center)
 	calGuide_mount_hole_base_spacing = calGuide_bearing_from_end+dnaAxis_bearing_OR*2+dnaAxis_bearing_IR*2+calOne_eighty_mount_W/3; // Guide mount distance from adjust screw to spring
 	calXY_guide_mount_hole_spacing = calGuide_mount_hole_base_spacing+calScrew_part_T;	// XY guide mount distance(center to center)
@@ -162,22 +180,26 @@
 	calZ_drive_rod_to_support_rod_spacing = max(dnaZ_drive_bearing_OR+calScrew_part_T, dnaZ_drive_pulley_R+dnaBelt_T*2)+dnaRod_R;
 	calZ_drive_rod_to_motor_spacing_y = max(dnaZ_drive_bearing_OR+calScrew_part_T, dnaZ_drive_pulley_R+dnaBelt_T*2)+dnaMotor_screw_head_R+dnaMotor_mount_spacing/2;
 	calZ_drive_rod_to_motor_spacing_x = dnaMotor_w/2-(calZ_drive_rod_to_guide_rod_spacing-calVertex_T-dnaGuide_rod_R);
-	calZ_drive_support_x = (calZ_drive_rod_to_guide_rod_spacing-dnaGuide_rod_R)-calVertex_T+dnaZ_drive_bearing_OR+calScrew_part_T/2;
+	calZ_drive_support_x = (calZ_drive_rod_to_guide_rod_spacing-dnaGuide_rod_R)-calVertex_T+dnaZ_drive_bearing_OR+calScrew_part_T;
 	calZ_drive_support_y = (calRod_part_T/2+calZ_drive_rod_to_support_rod_spacing)+(calZ_drive_rod_to_motor_spacing_y-dnaMotor_w/2);
 	calZ_drive_support_z = dnaZ_drive_bearing_W;
 	
 // ###Frame###
-	calVertex_spacing_x = calZ_drive_rod_spacing+calZ_drive_rod_to_guide_rod_spacing*2-dnaGuide_rod_R*2-calVertex_T;
+//adjusting
+	calVertex_spacing_x = calZ_drive_rod_spacing+calZ_drive_rod_to_guide_rod_spacing*2-dnaGuide_rod_R*2+(dnaVertex_type-1)*dnaRod_R*2-dnaVertex_type*(calVertex_T);
 	calY_support_L = calVertex_spacing_x + calVertex_T + 2*dnaRod_nut_T;
 	
 // ###x-axis###
-	calX_guide_rod_L = calY_support_L;						//NEED TO ADJUST FOR MOTOR###############
+	calX_guide_rod_L = calZ_drive_rod_spacing+2*calZ_drive_rod_to_guide_rod_spacing;						//NEED TO ADJUST FOR MOTOR###############
 	calX_support_rod_L = calX_guide_rod_spacing+calRod_part_T+2*(2*dnaRod_nut_T+dnaBelt_W);
 	
 // calculate the actual top rod spacing from the max of requested and minimum size (based on lower vertex (center to center))
 	calFrame_top_spacing = max(dnaFrame_top_spacing,calY_support_to_lower_support_min);
 
 // ###Frame###
+	calVertex_L_to_center = calY_support_to_lower_support_min/(2*cos(30));
+	calVertex_offset_to_center = calVertex_L_to_center*sin(30);
+	calVertex_poly_size = calVertex_L_to_center*2+calVertex_W/cos(30);
 	calVertex_rod_to_mount_rod_spacing = dnaRod_R*2;
 	calY_support_to_upper_support_z = calVertex_spacing_y*cos(30);
 	calDelta_size = calVertex_spacing_y+2*(calY_support_to_lower_support_z-calVertex_rod_to_mount_rod_spacing-calVertex_rod_to_mount_rod_spacing*cos(60))/cos(30);
@@ -188,18 +210,18 @@
 	
 	
 // ###Z-axis###
-	calZ_guide_rod_L = calY_support_to_lower_support_z+calY_support_to_upper_support_z+calRod_part_T;
+	calZ_guide_rod_L = calY_support_to_lower_support_z+calY_support_to_upper_support_z;
 	calZ_drive_rod_L = calZ_guide_rod_L-20;					//NEED TO ADJUST FOR PULLEY###############
 	
-	calVertex_cut = ((calDelta_size-calDelta_rod_L)/2+dnaRod_nut_T)/cos(30);
+	calVertex_cut = ((calDelta_size-calDelta_rod_L)/2+dnaRod_nut_T)/cos(30);	//#######to remove after finishing new vertex calculations
 	calThick_sheet_side_H =calY_support_to_lower_support_z+calY_support_to_upper_support_z+calRod_part_T;
 	calThick_sheet_side_W =calY_guide_rod_mount_spacing+calRod_part_T;
 	
 //Old Leaving until guides are updated to new calculations
 //xy_type_T = (dnaScrew_R+dnaMin_around_hole)*2;											//calScrew_part_T
-//xy_spring_hole_r = dnaScrew_R;
-//z_type_T = (dnaRod_R+dnaMin_around_hole)*2;
-//z_spring_hole_r = dnaRod_R;																//calRod_part_T
+xy_spring_hole_r = dnaScrew_R;
+z_type_T = (dnaRod_R+dnaMin_around_hole)*2;
+z_spring_hole_r = dnaRod_R;																//calRod_part_T
 //arm_H = (dnaAxis_bearing_IR+dnaMin_around_hole)*2;										//calOne_eighty_mount_W
 //three_sixty_arm_h = 2*(dnaAxis_bearing_OR+dnaRod_R);										//calThree_sixty_mount_W
 //gap_H = (dnaAxis_bearing_OR+dnaGuide_rod_R)*2;											//calAxis_bearing_center_spacing
