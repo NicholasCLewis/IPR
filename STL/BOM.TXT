@@ -1,0 +1,18 @@
+Parsing design (AST generation)...
+Compiling library `F:/3D/Mendel/IPR/IPR_func.scad'.
+Compiling library `F:/3D/Mendel/IPR/IPR_guide_bearingsWithZ.scad'.
+Compiling library `F:/3D/Mendel/IPR/IPR_func.scad'.
+Compiling design (CSG Tree generation)...
+ECHO: 87.0667
+ECHO: "6ea", 326.447, "mm L, ", 9, "mm D Threaded Rod - Frame"
+ECHO: "2ea", 261.067, "mm L, ", 8.6, "mm D  Smooth Rod - Y-guide rod"
+ECHO: "2ea", 316.047, "mm L, ", 8.6, "mm D Smooth Rod - X-guide rod"
+ECHO: "6ea", 259.258, "mm L, ", 9, "mm D Threaded Rod - Delta Frame"
+ECHO: "2ea", 261.067, "mm L, ", 9, "mm D Threaded Rod - Z-drive rod"
+ECHO: "2ea", 213.1, "mm L, ", 8.6, "mm D Smooth Rod - Z-guide rod"
+Compilation finished.
+Compiling design (CSG Products generation)...
+Compiling design (CSG Products normalization)...
+CSG generation finished.
+Total rendering time: 0 hours, 0 minutes, 0 seconds
+Saved design `F:/3D/Mendel/IPR/IPR_parts.scad'.
